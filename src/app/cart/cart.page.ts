@@ -28,6 +28,21 @@ export class CartPage implements OnInit {
     console.log('items:',this.selectedItems);
     this.total=this.selectedItems.reduce((a,b)=>a+(b.count * b.price),0);
   }
+
+  // removeProduct(product) {
+  //   this.selectedItems.reduce(product);
+  // }
+  
+  onDeleteItem(i) {
+    const index = this.selectedItems.indexOf(i);
+    if (index > -1) {
+    this.cartService.deleteFromCart(index);
+    this.selectedItems.splice(index, 1);
+    console.log(this.selectedItems);
+    }
+    this.total = this.selectedItems.reduce((a, b) => a + (b.count * b.price), 0);
+    }
+
 }
 
 
